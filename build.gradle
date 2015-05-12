@@ -1,64 +1,95 @@
 buildscript {
-	dependencies {
-		classpath 'com.rapidminer.gradle:extension:0.7.+'
-	}
+  repositories {
+    maven {
+      url "https://plugins.gradle.org/m2/"
+    }
+  }
+  dependencies {
+    classpath "gradle.plugin.com.rapidminer.gradle:gradle-plugin-rapidminer-gradle-plugin:0.3.2"
+    classpath 'com.rapidminer.gradle:extension:0.6.+'
+  }
 }
 
+plugins {
+  id "com.github.hierynomus.license" version "0.11.0"
+}
+
+apply plugin: 'java'
+apply plugin: 'findbugs'
 apply plugin: 'com.rapidminer.extension'
 
 // Define Maven artifact repositories
 repositories {
     jcenter()
-    maven { 
-    	url 'https://dl.bintray.com/rapidminer/public/' 
+    flatDir {
+      dirs '/opt/am/rapidminer-studio/lib'
     }
-    maven { 
-    	url 'https://dl.bintray.com/rapidminer/open-source/' 
+    mavenCentral()
+    maven {
+    	url 'https://dl.bintray.com/rapidminer/public/'
+    }
+    maven {
+    	url 'https://dl.bintray.com/rapidminer/open-source/'
+    }
+    maven {
+      url "https://plugins.gradle.org/m2/"
     }
 }
 
 extensionConfig {
-	name 'Template'
+	name 'Kantaxe'
 
-    /*
-     * The artefact group which will be used when publishing the extensions Jar.
-     * By default it is 'com.rapidminer.extension'.
-     */
-    //groupId = 'com.rapidminer.extension'
+  /*
+   * The artefact group which will be used when publishing the extensions Jar.
+   * By default it is 'com.rapidminer.extension'.
+   */
+  groupId = 'com.rapidminer.extension'
 
-    /*
-     * The extension vendor which will be displayed in the extensions about box.
-	 * By default it is 'RapidMiner GmbH'.
-     */
-    //vendor = "RapidMiner GmbH"
+  /*
+   * The extension vendor which will be displayed in the extensions about box.
+ * By default it is 'RapidMiner GmbH'.
+   */
+  vendor = "Kantox LTD"
 
-    /*
-     * The vendor homepage which will be displayed in the extensions about box.
-     * By default it is 'www.rapidminer.com'.
-     */
-    //homepage = "www.rapidminer.com"
+  /*
+   * The vendor homepage which will be displayed in the extensions about box.
+   * By default it is 'www.rapidminer.com'.
+   */
+  homepage = "www.kantox.com"
 
 	/*
 	 * The relative path to RapidMiner Studio. It will be used by the
-	 * 'installExtension' task to copy the extension Jar to $rapidminerHome/lib/plugins/ 
+	 * 'installExtension' task to copy the extension Jar to $rapidminerHome/lib/plugins/
 	 */
-	//rapidminerHome = '../rapidminer-studio'
+	rapidminerHome = '/opt/am/rapidminer-studio'
 
 	// define RapidMiner version and extension dependencies
 	dependencies {
-       rapidminer '5.3.0'
-       
-       // Only needed for version 5.3.0
-       useAntArtifact true
+    rapidminer '6.4.0'
+    // Only needed for version 5.3.0
+    // useAntArtifact true
 
-		//extension namespace: 'text', version: '6.1.0'
+		// extension namespace: 'finance', version: '6.1.0'
 	}
 }
 
 // Define third party library dependencies
 dependencies {
-	//compile 'com.google.guava:guava:18.0'
-	
+	// compile 'com.google.guava:guava:18.0'
+  // provided 'com.rapidminer:rapidminer:6.4.0'
+  compile fileTree(dir: '/opt/am/rapidminer-studio/lib', include: ['*.jar'])
+  compile fileTree(dir: '/opt/am/rapidminer-studio/lib/jdbc', include: ['*.jar'])
+
 	// VLDocking as docking framework (https://code.google.com/p/vldocking/)
 	provided 'com.rapidminer.external:vldocking:1.0.0'
+}
+
+findbugs {
+   ignoreFailures = true
+}
+
+license {
+    header = file("licenses/LICENSE")
+    exclude "**/*.java"
+    strictCheck false
 }

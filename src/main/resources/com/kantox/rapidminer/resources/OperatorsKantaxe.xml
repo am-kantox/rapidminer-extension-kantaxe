@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<operators name="template" version="5.0" docbundle="com/kantox/rapidminer/resources/i18n/OperatorsDocKantaxe">
+   <group key="Kantox">
+      <group key="Anti Fraud">
+         <icon>dislike.png</icon>
+         <operator>
+            <key>SimpleDetector</key>
+            <class>com.kantox.rapidminer.operator.SimpleFraudDetectionOperator</class>
+            <icon>dislike.png</icon>
+            <!--replaces>TextInformationExtraction</replaces-->
+         </operator>
+      </group>
+   </group>
+</operators>

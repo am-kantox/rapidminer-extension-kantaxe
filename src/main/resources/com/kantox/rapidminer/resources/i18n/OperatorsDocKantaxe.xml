@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<operatorHelp lang="en_EN">
+    <!--  This is an example how to specify the description of operators and the translation of it's key identifier
+    to names. 
+    -->
+   <operator>
+      <name>SimpleDetector</name>
+      <synopsis>Detects fraud attempts.</synopsis>
+      <help>This operator retrieves the dataset, analyzes it and marks possible fraud attempts.</help>
+   </operator>
+
+    <!-- This is how group ids are translated:
+    
+   <group>
+      <key>text_processing</key>
+      <name>Text Processing</name>
+   </group>
+
+    -->
+
+</operatorHelp>

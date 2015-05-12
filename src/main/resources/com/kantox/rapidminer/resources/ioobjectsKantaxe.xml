@@ -1,0 +1,21 @@
+<ioobjects>
+    <!--  
+    This is an example how to specify IOObjects and theirs various renderers.
+    -->
+	<ioobject
+		name="SimpleDetector"
+		class="com.kantox.rapidminer.operator.SimpleFraudDetectionOperator"
+		reportable="true"
+    icon="dislike.png">
+	  <renderer>com.rapidminer.gui.renderer.CollectionRenderer</renderer>
+	</ioobject>
+
+  <!--	
+    <ioobject
+        name="Word List"
+        class="com.rapidminer.operator.text.WordList"
+        reportable="true">
+      <renderer>com.rapidminer.gui.renderer.DefaultTextRenderer</renderer>
+    </ioobject>
+ -->
+</ioobjects>
